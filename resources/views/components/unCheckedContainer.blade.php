@@ -4,16 +4,18 @@
             Uncompleted tasks
         </div>
         <div class="tasksList">
-            @isset($tasks)
+            @if($tasks->count() > 0)
                 @foreach($tasks as $task)
+                    @include('components.task', $task)
                 @endforeach
             @else
+
             <div class="noTasksDiv">
                 <h3 style="color: white">
                     There's no tasks assigned
                 </h3>
             </div>
-            @endisset
+            @endif
         </div>
     </div>
 </div>

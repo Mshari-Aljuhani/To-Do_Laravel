@@ -5,9 +5,9 @@
             Checked Tasks
         </div>
         <div class="tasksList">
-            @isset($checkedTasks)
+            @if($checkedTasks->count() > 0)
                 @foreach($checkedTasks as $task)
-
+                    @include('components.task', $task)
                 @endforeach
             @else
                 <div class="noTasksDiv">
@@ -15,7 +15,7 @@
                         There's no completed task
                     </h3>
                 </div>
-            @endisset
+            @endif
         </div>
     </div>
 

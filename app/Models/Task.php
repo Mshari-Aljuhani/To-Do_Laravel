@@ -15,10 +15,9 @@ class Task extends Model
         'description',
         'color',
         'dueDate',
-        'checked',
     ];
 
     public function user(){
-        $this->belongsTo(User::class,'user_id');
+       return $this->belongsTo(User::class,'user_id');
     }
 }

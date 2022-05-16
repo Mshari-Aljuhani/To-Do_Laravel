@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -31,11 +32,17 @@ class TaskController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'description' => 'min:3|max:50|required|unique:tasks',
+        ]);
+        $user = Auth::user();
+        $task = $user->tasks()->create($request->all());
+        $task->save();
+        return redirect()->back()->with('status', 'the task added successfully');
     }
 
     /**
@@ -65,21 +72,23 @@ class TaskController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $task->update($request->all());
+        return redirect()->back()->with('status', 'Task updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+        return redirect()->back()->with('status', 'Task Deleted successfully');
     }
 }

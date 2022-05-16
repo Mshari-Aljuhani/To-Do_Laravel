@@ -36,13 +36,7 @@
     font-weight: bold;
     font-size: 1.5rem;
 }
-*
-.task{
-    min-height: 70px;
-    background: linear-gradient(to right, #232323 70%, #d4c050 100%); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    margin: 10px 15px 10px 15px;
-    border-radius: 10px;
-}
+
 #net{
     width: 100%;
     height:auto;
@@ -57,3 +51,25 @@
     border-radius: 50%;
     display: inline-block;
 }
+
+/*Task*/
+.task{
+    position: relative;
+    min-height: 70px;
+    margin: 10px 15px 10px 15px;
+    border-radius: 10px;
+}
+.taskDetails{
+    margin: 0;
+    color: white;
+}
+.taskDesc{
+
+}
+.checkBtnDiv{
+}
+.checkBtn{
+    margin: 0 auto;
+}
+
+/*END Task*/

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use Carbon\Carbon;
+use Carbon\CarbonInterval;
+use DatePeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,7 +32,9 @@ class HomeController extends Controller
     }
 
     public function welcome(){
-        $Tasks = Task::where('user_id', Auth::id());
-        return view('welcome', compact('Tasks'));
+        $tasks = Task::where('user_id', Auth::id())->where('checked', false)->get();
+        $checkedTasks = Task::where('user_id', Auth::id())->where('checked', true)->get();
+
+        return view('welcome', compact('tasks','checkedTasks'));
     }
 }

@@ -24,11 +24,24 @@
 <body>
     <div id="app">
         <!-- Header-->
-
         <main  id="net">
             @include('layouts.header')
             <div class="py-4">
-            @yield('content')
+                <div class="container">
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{$error}}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    @if (session('status'))
+                        <h6 class="alert alert-success">{{session('status')}}</h6>
+                    @endif
+                </div>
+                @yield('content')
             </div>
         </main>
         <script>
