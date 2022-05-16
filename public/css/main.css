@@ -1,0 +1,59 @@
+.navbar{
+    opacity: 40%;
+    z-index: 2;
+}
+.welcomeDiv{
+    text-align: center;
+    margin-bottom: 3vh;
+    color: white;
+}
+
+.mainContainer{
+    align-content: center;
+}
+.btnContainer{
+    text-align: center;
+    margin-bottom: 3vh;
+}
+.noTasksDiv{
+    text-align: center;
+    margin: 30px;
+}
+.tasksContainer{
+    width: 100%;
+    margin-bottom: 5vh;
+}
+.tasksList{
+    background: #483671;
+
+}
+.card-header{
+    background: #870000;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, rgb(55, 38, 84), #520606);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, rgb(55, 38, 84), #520606); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+*
+.task{
+    min-height: 70px;
+    background: linear-gradient(to right, #232323 70%, #d4c050 100%); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    margin: 10px 15px 10px 15px;
+    border-radius: 10px;
+}
+#net{
+    width: 100%;
+    height:auto;
+    min-height: 100%;
+    position: absolute;
+    z-index: 9999
+}
+
+.circle{
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    display: inline-block;
+}

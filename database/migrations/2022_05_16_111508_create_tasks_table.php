@@ -21,7 +21,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->longText('description');
             $table->string('color')->default('#e9ebf7');
-            $table->boolean('checked')->default('false');
+            $table->boolean('checked')->default(false);
             $table->date('dueDate')->nullable();
             $table->softDeletes();
             $table->timestamps();
