@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->longText('description')->unique();
+            $table->longText('description');
             $table->string('color')->default('#e9ebf7');
             $table->boolean('checked')->default(false);
             $table->date('dueDate')->nullable();
