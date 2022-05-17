@@ -25,7 +25,9 @@
 }
 .tasksList{
     background: #483671;
-
+}
+.CheckedList{
+    opacity: 70%;
 }
 .card-header{
     background: #870000;  /* fallback for old browsers */

@@ -6,7 +6,7 @@
     </div>
 
     <div class="btnContainer">
-        @include('components.newTaskModal')
+        @include('components.forms.newTaskModal')
     </div>
 
     <div class="container mainContainer mx-auto">

@@ -6,7 +6,7 @@
         <div class="tasksList">
             @if($tasks->count() > 0)
                 @foreach($tasks as $task)
-                    @include('components.task', $task)
+                    @include('components.task', ['task'=>$task,'btn'=>'success', 'sign'=>'✓'])
                 @endforeach
             @else
 
@@ -19,3 +19,4 @@
         </div>
     </div>
 </div>
+

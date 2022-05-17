@@ -15,6 +15,7 @@ class Task extends Model
         'description',
         'color',
         'dueDate',
+        'checked',
     ];
 
     public function user(){

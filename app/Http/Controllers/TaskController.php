@@ -80,6 +80,18 @@ class TaskController extends Controller
         return redirect()->back()->with('status', 'Task updated successfully');
     }
 
+    public function check(Request $request){
+        $task = Task::find($request->id);
+        if($task->checked){
+            $task->checked = 0;
+            $task->update();
+            return redirect()->back()->with('status', 'Task undo successfully');
+        }
+            $task->checked = true;
+            $task->update();
+            return redirect()->back()->with('status', 'Task checked successfully');
+    }
+
     /**
      * Remove the specified resource from storage.
      *

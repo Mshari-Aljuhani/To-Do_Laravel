@@ -1,13 +1,13 @@
 <div class="container">
 
-    <div class="card">
+    <div class="card CheckedList">
         <div class="card-header">
             Checked Tasks
         </div>
-        <div class="tasksList">
+        <div id="box" class="tasksList">
             @if($checkedTasks->count() > 0)
                 @foreach($checkedTasks as $task)
-                    @include('components.task', $task)
+                    @include('components.task', ['task'=>$task,'btn'=>'danger', 'sign'=>'X'])
                 @endforeach
             @else
                 <div class="noTasksDiv">

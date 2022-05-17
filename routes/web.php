@@ -21,3 +21,4 @@ Auth::routes();
 Route::get('/',[HomeController::class, 'welcome'])->name('welcome');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::resource('task', TaskController::class);
+Route::patch('/checked',[TaskController::class, 'check'])->name('check');
