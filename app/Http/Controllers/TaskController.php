@@ -37,7 +37,8 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'description' => 'min:3|max:50|required|unique:tasks',
+            'description' => 'min:3|max:50|required|unique:tasks,description',
+            'dueDate' => 'after_or_equal:today'
         ]);
         $user = Auth::user();
         $task = $user->tasks()->create($request->all());
@@ -80,7 +81,8 @@ class TaskController extends Controller
             return abort(401);
         }
         $request->validate([
-            'description' => 'min:3|max:50|required|unique:tasks',
+            'description' => 'min:3|max:50|required|unique:tasks,description,'.$task->id,
+            'dueDate' => 'after_or_equal:today'
         ]);
 
         $task->update($request->all());
