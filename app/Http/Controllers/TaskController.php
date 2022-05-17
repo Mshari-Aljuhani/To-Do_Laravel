@@ -38,7 +38,7 @@ class TaskController extends Controller
     {
         $request->validate([
             'description' => 'min:3|max:50|required|unique:tasks,description',
-            'dueDate' => 'after_or_equal:today'
+            'dueDate' => 'after_or_equal:today|nullable'
         ]);
         $user = Auth::user();
         $task = $user->tasks()->create($request->all());
@@ -82,7 +82,7 @@ class TaskController extends Controller
         }
         $request->validate([
             'description' => 'min:3|max:50|required|unique:tasks,description,'.$task->id,
-            'dueDate' => 'after_or_equal:today'
+            'dueDate' => 'after_or_equal:today|nullable'
         ]);
 
         $task->update($request->all());
