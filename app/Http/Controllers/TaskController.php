@@ -76,12 +76,22 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
+        if (Auth::id() != $task->user_id) {
+            return abort(401);
+        }
+        $request->validate([
+            'description' => 'min:3|max:50|required|unique:tasks',
+        ]);
+
         $task->update($request->all());
         return redirect()->back()->with('status', 'Task updated successfully');
     }
 
     public function check(Request $request){
         $task = Task::find($request->id);
+        if (Auth::id() != $task->user_id) {
+            return abort(401);
+        }
         if($task->checked){
             $task->checked = 0;
             $task->update();
@@ -100,6 +110,9 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
+        if (Auth::id() != $task->user_id) {
+            return abort(401);
+        }
         $task->delete();
         return redirect()->back()->with('status', 'Task Deleted successfully');
     }
