@@ -9,6 +9,9 @@ class Project extends Model
 {
     use HasFactory;
 
+    /**
+     * @var int|mixed|string|null
+     */
     protected $fillable =
         [
             "name",
@@ -16,6 +19,11 @@ class Project extends Model
         ];
     public function users(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-    return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, "projects_users");
+    }
+
+    public function tasks(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Task::class);
     }
 }

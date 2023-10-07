@@ -18,4 +18,9 @@ class Category extends Model
     {
         return $this->belongsTo(Project::class);
     }
+
+    public function tasks(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Task::class);
+    }
 }

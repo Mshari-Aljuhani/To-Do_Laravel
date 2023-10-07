@@ -13,8 +13,8 @@
             <div class="modal-body">
 
                 <!-- reusable form, for Create & Edit the task-->
-                <form action="{{route('task.store')}}" method="post">
-                    @include('components.forms.taskForm', ['btnText'=>'Create'])
+                <form action="{{route('task.store',  $project->id )}}" method="post">
+                    @include('components.tasks.forms.taskForm', ['btnText'=>'Create'])
                 </form>
                 <!-- END Form-->
 

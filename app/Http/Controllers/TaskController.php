@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,14 +35,23 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request, Project $project)
     {
         $request->validate([
-            'description' => 'min:3|max:50|required|unique:tasks,description',
+            'description' => 'min:3|max:50|required',
             'dueDate' => 'after_or_equal:today|nullable'
         ]);
-        $user = Auth::user();
-        $task = $user->tasks()->create($request->all());
+
+        $task = new Task([
+        'description' => $request->description,
+        'dueDate' => $request->dueDate,
+        'color' => $request->color,
+        'category_id' => $request->category_id ?? null,
+        'user_id' => Auth::id(),
+        ]);
+
+        $project->tasks()->save($task);
+
         $task->save();
         return redirect()->back()->with('status', 'the task added successfully');
     }

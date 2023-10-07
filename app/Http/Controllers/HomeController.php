@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use App\Models\Task;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
@@ -32,9 +33,11 @@ class HomeController extends Controller
     }
 
     public function welcome(){
+        $projects = Auth::user()->projects;
+
         $tasks = Task::where('user_id', Auth::id())->where('checked', false)->get();
         $checkedTasks = Task::where('user_id', Auth::id())->where('checked', true)->get();
 
-        return view('welcome', compact('tasks','checkedTasks'));
+        return view('welcome', compact('projects'));
     }
 }

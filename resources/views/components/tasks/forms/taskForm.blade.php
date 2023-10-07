@@ -1,8 +1,10 @@
 <!-- reusable form, for Create & Edit the task-->
     @csrf
-
     <!-- Description -->
     <label for="description">Task</label>
+
+    <input type="hidden" name="project_id" value="{{$project->id}}">
+
     <input id="description" class="form-control mb-3" type="text" name="description" placeholder="Enter the task"
        @isset($task) value="{{$task->description}}" @endisset
        value="{{ old('description') }}"
@@ -23,8 +25,11 @@
     <label class="circle" style="background-color: #d4c050" for="yellow"></label>
     <input id="yellow" class="form-check-input" type="radio" name="color" value="#d4c050"
            @isset($task) @if($task->color == "#d4c050") checked @endif @endisset>
+
     <label class="circle" style="background-color: #88db89" for="green"></label>
     <input id="green" class="form-check-input" type="radio" name="color" value="#88db89"
            @isset($task) @if($task->color == "#88db89") checked @endif @endisset>
-        <br> <button type="submit" class="btn btn-outline-primary mt-3">{{$btnText}}</button>
+        <br>
+
+    <button type="submit" class="btn btn-outline-primary mt-3">{{$btnText}}</button>
 <!-- END Form-->

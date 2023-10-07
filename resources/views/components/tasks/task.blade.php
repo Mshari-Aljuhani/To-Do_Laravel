@@ -27,6 +27,6 @@
         </div>
     </div>
 </div>
-@include('components.forms.editTaskModal')
-@include('components.forms.deleteTaskModal')
+{{--@include('components.forms.editTaskModal')--}}
+{{--@include('components.forms.deleteTaskModal')--}}
 

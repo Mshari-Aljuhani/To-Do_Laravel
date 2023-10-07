@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -31,22 +33,47 @@ class ProjectController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
-        //
+        $project = new Project($request->all());
+        $project->user_id = Auth::id();
+        $project->save();
+
+        $project->users()->sync(Auth::user());
+
+        return redirect()->back()->with('status', 'Project created successfully');
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show(Project $project)
+    public function show($projectId)
     {
-        //
+
+        $project = Project::find($projectId);
+
+        $pass = $project->users()->where("user_id", Auth::id())->exists();
+
+        if(!$pass){
+            abort(403);
+        }
+
+        // Fetch tasks associated with the project
+        $tasks = $project->tasks()
+            ->where('checked', false)
+            ->get();
+
+        $checkedTasks = $project->tasks()
+            ->where('checked', true)
+            ->get();
+
+
+        return view('components.projects.show', compact('tasks', 'checkedTasks', 'project'));
     }
 
     /**

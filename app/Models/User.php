@@ -49,6 +49,6 @@ class User extends Authenticatable
 
     public function  projects(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Project::class);
+        return $this->belongsToMany(Project::class, "projects_users");
     }
 }

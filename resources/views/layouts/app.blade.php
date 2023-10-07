@@ -20,6 +20,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet"> <!-- Laravel CSS -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet"> <!-- Customize CSS -->
+    @yield('css')
+
 </head>
 <body>
     <div id="app">
